@@ -1,6 +1,6 @@
 # csc_honorsV3
 
-## This is an prototype UI application to help blind people get around the city and purchase food
+## This is a prototype UI application to help blind people get around the city and purchase food
 
 ### step one download the Qt enviorment
 
