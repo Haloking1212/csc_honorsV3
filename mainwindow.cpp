@@ -9,7 +9,8 @@
 #include "travelLink.h"
 #include <QFile>
 #include <QTextStream>
-
+#include <QDir>
+#include <QDebug>
 
 //QString path = "/Users/hectorvaldez/Desktop/csc_honors_img";
 //vector <QString> img_vector = {"/chicken.jpg.jpeg","/orange.png","/beef.jpeg",
@@ -123,11 +124,6 @@ void MainWindow::on_plainTextEdit_textChanged()
 
     QString styleSheetArg2 = ")";
 
-    QString filename = "savedSearches.txt";
-    QFile file(filename);
-    file.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream out(&file);
-
 
     if(ui->plainTextEdit->toPlainText() == "mcdonalds") {
         ui->label_travel_pic->setStyleSheet(styleSheetArg1 + path + travel_img_vector[3] + styleSheetArg2);
@@ -139,9 +135,7 @@ void MainWindow::on_plainTextEdit_textChanged()
         ui->label_travel_pic->setStyleSheet(styleSheetArg1 + path + travel_img_vector[0] + styleSheetArg2);
     }
 
-    // was trying to save the search result here.
-    out << "Testing";
-    file.close();
+
 
 }//  end of plainTextEdit_textChanged function
 
@@ -149,6 +143,34 @@ void MainWindow::on_plainTextEdit_textChanged()
 // travel button
 void MainWindow::on_pushButton_3_clicked()
 {
+//    QString userSearchString = ui->plainTextEdit->toPlainText();
+    //creating a new file
+//    QFile file("/Users/hectorvaldez/Desktop/csc_honorsV3savedTravelSearches.txt");
+
+//    if(file.open(QIODevice::ReadWrite)) {
+//        QTextStream stream(&file);
+//        stream << userSearchString;
+//        qInfo() << userSearchString << " user string";
+//    }
+//     qInfo() << userSearchString;
+
+//    QString filename = "savedSearches.txt";
+//    QFile file(filename);
+//    file.open(QIODevice::WriteOnly | QIODevice::Text);
+//    QTextStream out(&file);
+
+    //////////////////////////////////////////////////////////////////
+
+    QFile file("/Users/hectorvaldez/Desktop/csc_honorsV3/savedTravelSearches.txt");
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return;
+
+        QTextStream out(&file);
+        QString userString = ui->plainTextEdit->toPlainText();
+        out << userString;
+
+
+
     vector <QString> links = {"https://www.google.com/maps/search/train+station/@40.8553081,-73.9242248,15z/data=!3m1!4b1",
                              "https://www.google.com/maps/place/home/@40.8494657,-73.9381083,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2f41fd570f077:0xaeb214adcec6c2b3!8m2!3d40.8494657!4d-73.9359196",
                              "https://www.google.com/maps/place/Borough+of+Manhattan+Community+College/@40.7188851,-74.0139434,17z/data=!3m2!4b1!5s0x89c25a1e73a0d745:0xc9909c0427cbf355!4m5!3m4!1s0x89c25a1e7e56a86f:0x69339e9ddf4f987a!8m2!3d40.7188851!4d-74.0117547",
@@ -167,6 +189,9 @@ void MainWindow::on_pushButton_3_clicked()
 
 
 }// end of travel button
+
+
+
 
 
 ///////////////////// Dont code below here //////////////////////////////
