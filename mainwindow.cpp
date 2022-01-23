@@ -178,7 +178,13 @@ void MainWindow::on_pushButton_3_clicked()
 // profile setting button
 void MainWindow::on_pushButton_5_clicked()
 {
-    QFile file("/Users/hectorvaldez/Desktop/csc_honorsV3/userProfile.txt");
+    QString fileName = "/Users/hectorvaldez/Desktop/csc_honorsV3/userProfile.txt";
+    try {
+        if (fileName != "/Users/hectorvaldez/Desktop/csc_honorsV3/userProfile.txt") {
+            throw fileName;
+        }
+
+    QFile file(fileName);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
             return;
 
@@ -187,6 +193,9 @@ void MainWindow::on_pushButton_5_clicked()
         QString userAgeString = ui->plainTextEdit_3->toPlainText();
         out << userNameString;
         out << userAgeString;
+    } catch (QString ex) {
+        qInfo() << "File error.";
+    }
 }// end of profile setting button
 
 
