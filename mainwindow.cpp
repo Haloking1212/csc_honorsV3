@@ -4,6 +4,8 @@
 #include "QPixmap"
 #include "QString"
 #include "robot.h"
+#include "person.h"
+#include "profile.h"
 #include <QDesktopServices>
 #include <QUrl>
 #include "travelLink.h"
@@ -143,23 +145,6 @@ void MainWindow::on_plainTextEdit_textChanged()
 // travel button
 void MainWindow::on_pushButton_3_clicked()
 {
-//    QString userSearchString = ui->plainTextEdit->toPlainText();
-    //creating a new file
-//    QFile file("/Users/hectorvaldez/Desktop/csc_honorsV3savedTravelSearches.txt");
-
-//    if(file.open(QIODevice::ReadWrite)) {
-//        QTextStream stream(&file);
-//        stream << userSearchString;
-//        qInfo() << userSearchString << " user string";
-//    }
-//     qInfo() << userSearchString;
-
-//    QString filename = "savedSearches.txt";
-//    QFile file(filename);
-//    file.open(QIODevice::WriteOnly | QIODevice::Text);
-//    QTextStream out(&file);
-
-    //////////////////////////////////////////////////////////////////
 
     QFile file("/Users/hectorvaldez/Desktop/csc_honorsV3/savedTravelSearches.txt");
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -190,8 +175,48 @@ void MainWindow::on_pushButton_3_clicked()
 
 }// end of travel button
 
+// profile setting button
+void MainWindow::on_pushButton_5_clicked()
+{
+    QFile file("/Users/hectorvaldez/Desktop/csc_honorsV3/userProfile.txt");
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return;
+
+        QTextStream out(&file);
+        QString userNameString = ui->plainTextEdit_2->toPlainText();
+        QString userAgeString = ui->plainTextEdit_3->toPlainText();
+        out << userNameString;
+        out << userAgeString;
+}// end of profile setting button
 
 
+// name text field
+void MainWindow::on_plainTextEdit_2_textChanged()
+{
+
+}// end of name text field
+
+
+// age textfield
+void MainWindow::on_plainTextEdit_3_textChanged()
+{
+
+}// end of age text field
+
+
+// get user data button
+void MainWindow::on_pushButton_6_clicked()
+{
+    person user;
+
+    user.setUserName(ui->plainTextEdit_2->toPlainText());
+    user.setAge(ui->plainTextEdit_3->toPlainText());
+
+    qInfo() << user.getPersonID();
+    qInfo() << user.getUserName();
+    qInfo() << user.getAge();
+
+}// of get user data button
 
 
 ///////////////////// Dont code below here //////////////////////////////

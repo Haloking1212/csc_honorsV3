@@ -11,12 +11,16 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    person.cpp \
+    profile.cpp \
     robot.cpp \
     savedsearches.cpp \
     travelLink.cpp
 
 HEADERS += \
     mainwindow.h \
+    person.h \
+    profile.h \
     robot.h \
     savedsearches.h \
     travelLink.h
@@ -30,4 +34,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    savedTravelSearches.txt
+    savedTravelSearches.txt \
+    userProfile.txt
